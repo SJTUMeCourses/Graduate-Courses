@@ -1,3 +1,3 @@
-# 忽略uploads上传的所有文件
-public/uploads/*
-!public/uploads/README.md
+教师：王皓
+
+笔记：致谢--姜朔
