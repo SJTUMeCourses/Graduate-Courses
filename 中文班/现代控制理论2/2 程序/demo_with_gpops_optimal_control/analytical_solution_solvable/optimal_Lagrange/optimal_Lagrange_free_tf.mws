@@ -1,0 +1,120 @@
+{VERSION 5 0 "IBM INTEL NT" "5.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 
+0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Headi
+ng 1" -1 3 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 1 1 
+1 }1 1 0 0 8 4 1 0 1 0 2 2 0 1 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 31 "#  optimal_Lagrange_
+free_tf.mws" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 3 "#  " }}{PARA 0 "> " 
+0 "" {MPLTEXT 1 0 19 "#  Lagrange problem" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 38 "#      --- both x_0 and x_f are fixed," }}{PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 50 "#      --- only t_0 is specified, but t_f is f
+ree," }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 72 "#      --- modifief from op
+timal_Lagrange.mws by freeing the final time." }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 8 "#  HLJin" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "#  11 J
+une 2015" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 83 "# ---------------------------- Solution Method 1 ----
+----------------------------- " }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 35 "#
+    By way of functional variation" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 
+82 "# ----------------------------------------------------------------
+----------------" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart;" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 20 "# The Euler equation" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 37 "Diff(L,x) - Diff(Diff(L,xdot),t) = \+
+0;" }}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 15 " 1. The problem" }}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "# The intial condition" }}{PARA 0 "
+> " 0 "" {MPLTEXT 1 0 17 "t0 := 0; x0 := 3;" }}}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 21 "# The final condition" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 82 "xf := 0; #tf is unspecified, there exists an optimal \+
+value tf_star when tf is free" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 31 "# The Lagrangian L(x, dot_x) is" }}{PARA 0 "> " 0 "" {MPLTEXT 1 
+0 10 "u := x+dx;" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "L := 1+u^2;" }}
+}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 34 " 2. Derive and solve the equati
+ons" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 21 "# Derive the equation
+" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 51 " pLx := subs(\{x=x(t), dx=diff(
+x(t),t)\}, diff(L,x));" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 52 "pLdx := s
+ubs(\{x=x(t), dx=diff(x(t),t)\}, diff(L,dx));" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 42 " deq := pLx-Diff(pLdx,t)=0; simplify(deq);" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 20 "# Solve the equation" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 25 "xx := op(2, dsolve(deq));" }}{PARA 
+0 "> " 0 "" {MPLTEXT 1 0 29 "xx := _C1*exp(-t)+_C2*exp(t);" }}}}{SECT 
+1 {PARA 3 "" 0 "" {TEXT -1 27 " 3. Dedermine the constants" }}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 41 "# Equation derived from initial con
+dition" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "eq1 := subs(t=t0,xx) = x0
+;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 41 "# Equation derived fro
+m section condition" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 63 "eq2 := subs(
+x=xx, dx=diff(xx,t), expand(L+(0-dx)*diff(L,dx))); " }}{PARA 0 "> " 0 
+"" {MPLTEXT 1 0 16 "simplify(eq2)=0;" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 26 "# Determine the constants " }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 44 "c1_sol := solve(subs(_C2=x0-_C1, eq2), _C1);" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "if ( evalf(c1_sol[1])>0 ) then" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 19 "  cc1 := c1_sol[1];" }}{PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 4 "else" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 19 "  cc
+1 := c1_sol[2];" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 7 "end if;" }}{PARA 
+0 "> " 0 "" {MPLTEXT 1 0 14 "cc2 := x0-cc1;" }}}}{SECT 1 {PARA 3 "" 0 
+"" {TEXT -1 22 " 4. List the solutions" }}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 41 "# The optimal x*(t) and optimal u*(t) are" }}{PARA 0 
+"> " 0 "" {MPLTEXT 1 0 39 "x_star := subs(\{_C1=cc1, _C2=cc2\}, xx);" 
+}}{PARA 0 "> " 0 "" {MPLTEXT 1 0 42 "u_star := simplify(x_star+diff(x_
+star,t));" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 32 "# The optimal \+
+final time tf_star" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 31 " tf_star := s
+olve(x_star=xf,t);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 27 "'tf_star' = e
+valf(tf_star);" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 35 " 5. Evaluate \+
+the objective function" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 48 "L_
+star := subs(\{x=x_star,dx=diff(x_star,t)\}, L);" }}}{EXCHG {PARA 0 ">
+ " 0 "" {MPLTEXT 1 0 20 "Jt := int(L_star,t);" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 46 " J_star := subs(t=tf_star,Jt) - subs(t=t0,Jt):" 
+}}{PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "'J_star' = simplify(J_star);" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 25 "'J_star' = evalf(J_star);" }}}}
+{SECT 1 {PARA 3 "" 0 "" {TEXT -1 19 " 6. Plot the curves" }}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 44 "plot(\{x_star, u_star, L_star\}, t=
+t0-0.1..2);" }}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 82 "# ---------------------------- Solution Method 2 ----
+-----------------------------" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "# \+
+   By way of optimal control" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 82 "# -
+----------------------------------------------------------------------
+---------" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart;" }}}{SECT 1 
+{PARA 3 "" 0 "" {TEXT -1 15 " 1. The problem" }}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 15 "# The system is" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 
+10 "f := -x+u;" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "# The initial con
+dition is" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 20 "x0 := 3;   t0 := 0; " 
+}}{PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "# The final condition is" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 62 "xf := 0;   # Note: t_f is unspecifi
+ed !!(in other words, free)" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+26 "# The Lagrangian L(x,u) is" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "L
+ := 1+u*u;" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 23 " 2. Solve the equ
+ations" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 46 "# Construct the Ha
+miltonian H(x,u,lambda,t) is" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 16 "H :
+= L+lambda*f;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "# The co-s
+tate equation" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "Diff(lambda,t) = -
+diff(H,x);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "# The control
+ equation" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "Diff('H',u) = diff(H,u
+);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 19 "lambda := c*exp(t);" 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "u := -lambda/2;" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 18 "xx1 := x0*exp(-t);" }}{PARA 
+0 "> " 0 "" {MPLTEXT 1 0 43 "xx2 := int(subs(t=tau,u)*exp(-t+tau), tau
+);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 51 "x_star := xx1+(subs(t
+au=t, xx2)-subs(tau=t0, xx2));" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 34 "'H' = simplify(subs(x=x_star, H));" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 37 "eq2 := simplify(subs(x=x_star, H))=0;" }}}}{SECT 1 
+{PARA 3 "" 0 "" {TEXT -1 27 " 3. Determine the constants" }}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 21 "csol := solve(eq2,c);" }}{PARA 0 ">
+ " 0 "" {MPLTEXT 1 0 29 "if( evalf(csol[1]) > 0 ) then" }}{PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 17 "    c := csol[1];" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 5 "else;" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 17 "    c := c
+sol[2];" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 7 "end if;" }}}}{SECT 1 
+{PARA 3 "" 0 "" {TEXT -1 22 " 4. List the solutions" }}{EXCHG {PARA 0 
+"> " 0 "" {MPLTEXT 1 0 18 "'x_star' = x_star;" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 13 "'u_star' = u;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 31 " tf_star := solve(x_star=xf,t);" }}{PARA 0 "> " 0 "" {MPLTEXT 
+1 0 27 "'tf_star' = evalf(tf_star);" }}}}{SECT 1 {PARA 3 "" 0 "" 
+{TEXT -1 35 " 5. Evaluate the objective function" }}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 15 "Jt := int(L,t);" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 58 " J_star := simplify( subs(t=tf_star,Jt) - subs(t=t0,J
+t) );" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 25 "'J_star' = evalf(J_star);
+" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 19 " 6. Plot the curves" }}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 34 "plot(\{u, x_star, L\}, t=t0-
+0.1..2);" }}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}}{MARK "20
+ 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }
+

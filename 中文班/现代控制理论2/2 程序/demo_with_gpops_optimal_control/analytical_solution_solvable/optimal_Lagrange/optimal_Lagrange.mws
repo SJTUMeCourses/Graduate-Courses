@@ -1,0 +1,75 @@
+{VERSION 5 0 "IBM INTEL NT" "5.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 
+0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Headi
+ng 1" -1 3 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 1 1 
+1 }1 1 0 0 8 4 1 0 1 0 2 2 0 1 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "#  optimal_Lagrange.
+mws" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 3 "#  " }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 19 "#  Lagrange problem" }}{PARA 0 "> " 0 "" {MPLTEXT 1 
+0 38 "#      --- both x_0 and x_f are fixed," }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 42 "#      --- both t_0 and t_f are specified." }}{PARA 
+0 "> " 0 "" {MPLTEXT 1 0 1 "#" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "#  \+
+HLJin" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 14 "#  9 June 2015" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart;" }}}{SECT 1 {PARA 3 "" 0 "
+" {TEXT -1 15 " 1. The problem" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 15 "# The system is" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "f := -x+u;
+" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "# The initial condition is" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 17 "x0 := 3; t0 := 0;" }}{PARA 0 "> " 
+0 "" {MPLTEXT 1 0 24 "# The final condition is" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 82 "#----------------------------------------------------
+-----------------------------" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 64 "# \+
+   Note:  t_f is specified, but you may try some other values." }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 64 "#           If it is commented out,
+ then tf_star will be solved." }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 82 "#-
+----------------------------------------------------------------------
+----------" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 73 "xf := 0;  tf := 2;  #
+ try tf:= 1.4, 1.6, 1.8, 2.0, 2.2, or comment out tf" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 26 "# The Lagrangian L(x,u) is" }}{PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 11 "L := 1+u*u;" }}}}{SECT 1 {PARA 3 "" 0 "" 
+{TEXT -1 23 " 2. Solve the equations" }}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 46 "# Construct the Hamiltonian H(x,u,lambda,t) is" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 18 "H := L + lambda*f;" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "# The co-state equation" }}{PARA 0 
+"> " 0 "" {MPLTEXT 1 0 28 "Diff(lambda,t) = -diff(H,x);" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "# The control equation" }}{PARA 0 "
+> " 0 "" {MPLTEXT 1 0 24 "Diff('H',u) = diff(H,u);" }}}{EXCHG {PARA 0 
+"> " 0 "" {MPLTEXT 1 0 19 "lambda := c*exp(t);" }}}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 15 "u := -lambda/2;" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 18 "xx1 := x0*exp(-t);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 
+42 "xx2 := int(subs(t=tau,u)*exp(-t+tau),tau);" }}}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 51 "x_star := xx1 + subs(tau=t,xx2) - subs(tau=t0,
+xx2);" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 27 " 3. Determine the cons
+tants" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 31 "x_star_f := subs(t=
+tf, x_star);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 32 "cc_raw := s
+olve(x_star_f=xf, c);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "c := simpl
+ify(cc_raw);" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 22 " 4. List the so
+lutions" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "'x_star' = simpli
+fy(x_star);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 13 "'u_star' = u;" }}}}
+{SECT 1 {PARA 3 "" 0 "" {TEXT -1 35 " 5. Evaluate the objective functi
+on" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "Jt := int(L,t);" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 53 " J_star := simplify( subs(t=
+tf,Jt) - subs(t=t0,Jt) );" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 25 "'J_sta
+r' = evalf(J_star);" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 19 " 6. Plot
+ the curves" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 66 "#------------
+-----------------------------------------------------" }}{PARA 0 "> " 
+0 "" {MPLTEXT 1 0 67 "# If t_f is not specified, then plot J(x,u) as f
+unction of t_f, and" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 45 "# solve for \+
+tf_star, the optimal value of t_f" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 
+66 "#-----------------------------------------------------------------
+" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "if( type(tf,'name') ) then" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 34 "    plot(J_star, tf=1..3, J=0..4);
+" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 43 "    tf_sol := solve(diff(J_star
+,tf)=0, tf):" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 36 "    if ( evalf(tf_s
+ol[1]) > 0 ) then" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 29 "        tf_sta
+r := tf_sol[1];" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 9 "    else;" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 29 "        tf_star := tf_sol[2];" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "    end if;" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 24 "    'tf_star' = tf_star;" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 32 "    'tf_star' = evalf(tf_star); " }}{PARA 0 "> " 0 "
+" {MPLTEXT 1 0 47 "    'J_star'  = evalf(subs(tf=tf_star,J_star));" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 5 "else;" }}{PARA 0 "> " 0 "" {MPLTEXT 
+1 0 41 "    plot(\{u, x_star, L\}, t=t0-0.1..2.2); " }}{PARA 0 "> " 0 
+"" {MPLTEXT 1 0 7 "end if;" }}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+0 "" }}}}{MARK "8 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }
+{PAGENUMBERS 0 1 2 33 1 1 }

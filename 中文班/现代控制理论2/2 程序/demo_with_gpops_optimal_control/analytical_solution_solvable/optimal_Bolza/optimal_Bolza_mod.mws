@@ -1,0 +1,116 @@
+{VERSION 5 0 "IBM INTEL NT" "5.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 
+0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Headi
+ng 1" -1 3 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 1 1 
+1 }1 1 0 0 8 4 1 0 1 0 2 2 0 1 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "#  optimal_Bolza_mod
+.mws" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 3 "#  " }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 16 "#  Bolza problem" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 
+42 "#      --- without final-state constraint," }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 42 "#      --- both t_0 and t_f are specified," }}{PARA 
+0 "> " 0 "" {MPLTEXT 1 0 82 "#      --- modified from optimal_Bolza.mw
+s by removing the final-state constraint." }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 8 "#  HLJin" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "#  16 J
+une 2015" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart;" }}}
+{SECT 1 {PARA 3 "" 0 "" {TEXT -1 15 " 1. The problem" }}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 24 "# The original system is" }}{PARA 0 "> " 
+0 "" {MPLTEXT 1 0 22 "f1 := x2; f2 := -x2+u;" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 23 "# The initial condition" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 31 "t0 := 0; x1_0 := 0;  x2_0 := 0;" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 21 "# The final condition" }}{PARA 0 "> " 0 "" {MPLTEXT 
+1 0 34 "# Both t_0 and t_f are specified!!" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 86 "tf := 2;   # Note: try some other values, e.g. 2, 3, \+
+3.5, 4, 5; or even comment it out" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 26 "# The Lagrangian L(x,u) is" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 13 "L := 1+u^2/2;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 37 "# The Mayer function Phi[x(tf),tf] is" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 37 "phi := 1/2*(x1_f-5)^2+1/2*(x2_f-2)^2;" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 71 "# The final-state constraint N[x(tf
+],tf]=0 --- this has been removed !!" }}{PARA 0 "> " 0 "" {MPLTEXT 1 
+0 23 "# psi := x1_f+2*x2_f-6;" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 
+23 " 2. Solve the equations" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+36 "# The Hamiltonian H(x,u,lambda,t) is" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 37 "H := L + lambda[1]*f1 + lambda[2]*f2;" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "# The co-state equation is" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 43 "co_deq1 := Diff(lambda[1],t) = -dif
+f(H,x1);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 43 "co_deq2 := Diff(lambda[
+2],t) = -diff(H,x2);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "# T
+he state equation is" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 39 "deq1 := Dif
+f(x1,t) = diff(H,lambda[1]);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 39 "deq
+2 := Diff(x2,t) = diff(H,lambda[2]);" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 25 "# The control equation is" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 23 "ctrl_eq := diff(H,u)=0;" }}}}{SECT 1 {PARA 3 "" 0 "" 
+{TEXT -1 17 " 3. The solutions" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 16 "lambda[1] := c1;" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "lambda[2]
+ := c2*exp(t)+c1;" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 42 "x[1] := -c3*ex
+p(-t)-1/2*c2*exp(t)-c1*t+c4;" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 36 "x[2
+] := c3*exp(-t)-1/2*c2*exp(t)-c1;" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT 
+-1 62 " 4. Determine the constants by boundary and section conditions
+" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 45 "# Equation derived from \+
+the initial condition" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "eq1 := sub
+s(t=t0,x[1]) = x1_0;" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "eq2 := subs
+(t=t0,x[2]) = x2_0;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 45 "# Eq
+uation derived from the section condition" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 45 "eq3 := subs(t=tf,lambda[1]) = diff(phi,x1_f);" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 45 "eq4 := subs(t=tf,lambda[2]) = diff(
+phi,x2_f);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 50 "# Equation de
+rived from the final-state constraint" }}{PARA 0 "> " 0 "" {MPLTEXT 1 
+0 70 "#---------------------------------------------------------------
+------" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "#    No longer applicable
+ !!" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 70 "#---------------------------
+------------------------------------------" }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 71 "# The final-states are also expressed as function o
+f the four constants" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "x1_f := sub
+s(t=tf,x[1]);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "x2_f := subs(t=tf,
+x[2]);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "# Finally the con
+tants are" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 1 "#" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 72 "#      Note that there is only 4 equations to be solv
+ed for 4 unknowns, " }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 49 "#  and mu, t
+he formerly unknown, no longer exists" }}{PARA 0 "> " 0 "" {MPLTEXT 1 
+0 1 "#" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 48 "const := solve(\{eq1,eq2,
+eq3,eq4\},\{c1,c2,c3,c4\}):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+16 "simplify(const);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 13 "evalf(const
+);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 14 "assign(const);" }}}}{SECT 1 
+{PARA 3 "" 0 "" {TEXT -1 35 " 5. Evaluate the objective function" }}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 34 " x1_star_final := simplify(x
+1_f); " }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "'x1_star_final' = evalf(x
+1_f);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 34 " x2_star_final := \+
+simplify(x2_f); " }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "'x2_star_final'
+ = evalf(x2_f);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "phi_star
+ := simplify(phi);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 52 "J := \+
+phi_star + int(subs(u=-lambda[2],L), t=t0..tf);" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 29 "### Note that: u = -lambda[2]" }}}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 23 " J_star := simplify(J);" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 20 "'J_star' = evalf(J);" }}}}{SECT 1 {PARA 3 "" 0 "" 
+{TEXT -1 55 " 6.  Check the final-state constraint  N[x(tf), tf] = 0" 
+}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 67 "#-------------------------
+-----------------------------------------" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 18 "# Not applicable !" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 
+67 "#-----------------------------------------------------------------
+-" }}}}{SECT 1 {PARA 3 "" 0 "" {TEXT -1 19 " 7. Plot the curves" }}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 66 "#---------------------------
+--------------------------------------" }}{PARA 0 "> " 0 "" {MPLTEXT 
+1 0 67 "# If t_f is not specified, then plot J(x,u) as function of t_f
+, and" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 45 "# solve for tf_star, the o
+ptimal value of t_f" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 66 "#-----------
+------------------------------------------------------" }}{PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 26 "if( type(tf,'name') ) then" }}{PARA 0 "> " 0 "
+" {MPLTEXT 1 0 26 "    plot(J_star, tf=2..5);" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 45 "    tf_star := fsolve(diff(J_star,tf)=0, tf);" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 39 "    'c1' = evalf(subs(tf=tf_star, c
+1));" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 39 "    'c2' = evalf(subs(tf=tf
+_star, c2));" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 39 "    'c3' = evalf(su
+bs(tf=tf_star, c3));" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 39 "    'c4' = \+
+evalf(subs(tf=tf_star, c4));" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 66 "## \+
+ 'mu' = evalf(subs(tf=tf_star, mu));    ## No longer applicable" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 49 "    'J_star'  = evalf(subs(tf=tf_st
+ar,J_star));  " }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 44 "    'x1_f' = eval
+f(subs(tf=tf_star, x1_f)); " }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 43 "    \+
+'x2_f' = evalf(subs(tf=tf_star, x2_f));" }}{PARA 0 "> " 0 "" {MPLTEXT 
+1 0 5 "else;" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 52 "    plot(\{x[1],x[2
+],lambda[1],lambda[2]\}, t=t0..tf);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 
+80 "    plot(\{[x[1],x[2],t=t0..tf],[x1,(6-x1)/2,x1=-1..7]\}, x1=-1..7
+, x2=-0.5..3.5);" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 7 "end if;" }}}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}}{MARK "2" 0 }{VIEWOPTS 
+1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }
